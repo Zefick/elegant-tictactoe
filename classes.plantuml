@@ -10,7 +10,7 @@ class Game {
 
 class Grid {
   -State[] data
-  +State[] data()
+  +mode(int, boolean) : Grid
   +boolean free(int)
   +boolean full()
   +String string()
@@ -24,50 +24,55 @@ class State {
   -char symbol
   +boolean empty()
   +char symbol()
+  +{static} of(boolean)
 }
 
-interface Player {
-  +int move(Grid grid, boolean side)
+
+Game *- player.Player
+
+namespace estimation {
+
+    interface Estimation {
+      +int estimate(Grid grid, int move, boolean side)
+    }
+
+    class MonteCarloEstimation {
+      -int count
+    }
+    class RandomEstimation
+    class FullDepthEstimation
+    
+    Estimation <|-- MonteCarloEstimation 
+    Estimation <|-- RandomEstimation
+    Estimation <|-- FullDepthEstimation
 }
 
-Game *- Player
+namespace player {
 
+    interface Player {
+      +int move(Grid grid, boolean side)
+    }
 
-interface Estimation {
-  +int estimate(Grid grid, int move, boolean side)
+    class EstimatingAI {
+      -Estimation estimation
+    }
+    
+    class ForcedPlayer {
+      -Player player
+    }
+    
+    class VerbosePlayer {
+      -Player player
+    }
+    EstimatingAI o-- estimation.Estimation
+
+    VerbosePlayer o-- Player
+    ForcedPlayer o-- Player
+    
+    Player <|-- EstimatingAI
+    Player <|-- HumanPlayer
+    Player <|-- ForcedPlayer
+    Player <|-- VerbosePlayer
 }
-
-class EstimatingAI {
-  -Estimation estimation
-}
-
-class ForcedPlayer {
-  -Player player
-}
-
-class VerbosePlayer {
-  -Player player
-}
-
-EstimatingAI o-- Estimation
-
-VerbosePlayer o-- Player
-ForcedPlayer o-- Player
-
-class RandomEstimation
-class FullDepthEstimation
-
-class MonteCarloEstimation {
-  -int count
-}
-
-Estimation <|-- MonteCarloEstimation 
-Estimation <|-- RandomEstimation
-Estimation <|-- FullDepthEstimation
-
-Player <|-- EstimatingAI
-Player <|-- HumanPlayer
-Player <|-- ForcedPlayer
-Player <|-- VerbosePlayer
 
 @enduml
