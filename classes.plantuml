@@ -1,0 +1,73 @@
+@startuml
+
+class Game {
+  -Player p1
+  -Player p2
+  -Grid grid
+  -boolean first
+  +Grid play()
+}
+
+class Grid {
+  -State[] data
+  +State[] data()
+  +boolean free(int)
+  +boolean full()
+  +String string()
+  +State winner()
+}
+
+Grid *-- State : 9
+Game *-- Grid
+
+class State {
+  -char symbol
+  +boolean empty()
+  +char symbol()
+}
+
+interface Player {
+  +int move(Grid grid, boolean side)
+}
+
+Game *- Player
+
+
+interface Estimation {
+  +int estimate(Grid grid, int move, boolean side)
+}
+
+class EstimatingAI {
+  -Estimation estimation
+}
+
+class ForcedPlayer {
+  -Player player
+}
+
+class VerbosePlayer {
+  -Player player
+}
+
+EstimatingAI o-- Estimation
+
+VerbosePlayer o-- Player
+ForcedPlayer o-- Player
+
+class RandomEstimation
+class FullDepthEstimation
+
+class MonteCarloEstimation {
+  -int count
+}
+
+Estimation <|-- MonteCarloEstimation 
+Estimation <|-- RandomEstimation
+Estimation <|-- FullDepthEstimation
+
+Player <|-- EstimatingAI
+Player <|-- HumanPlayer
+Player <|-- ForcedPlayer
+Player <|-- VerbosePlayer
+
+@enduml
