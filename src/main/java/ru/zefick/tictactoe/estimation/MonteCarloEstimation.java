@@ -21,7 +21,7 @@ public class MonteCarloEstimation implements Estimation {
     }
 
     @Override
-    public int estimate(Grid grid, int cell, int side) {
+    public int estimate(Grid grid, String cell, int side) {
         Player p = new ForcedPlayer(
                 new EstimatingAI(
                         new RandomEstimation()));

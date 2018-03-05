@@ -16,14 +16,14 @@ public final class Grid {
         Arrays.fill(data, State.EMPTY);
     }
 
-    public Grid move(int cell, int side) {
+    public Grid move(String cell, int side) {
         State data2[] = data.clone();
-        data2[cell] = State.of(side);
+        data2[Integer.parseInt(cell)] = State.of(side);
         return new Grid(data2);
     }
 
-    public boolean free(int n) {
-        return data[n].empty();
+    public boolean free(String n) {
+        return data[Integer.valueOf(n)].empty();
     }
 
     public boolean full() {

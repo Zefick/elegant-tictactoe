@@ -9,7 +9,7 @@ import ru.zefick.tictactoe.State;
 public class HumanPlayer implements Player {
 
     @Override
-    public int move(Grid grid, int side) {
+    public String move(Grid grid, int side) {
         message(grid.string());
         message(String.format("Your move (%s): ", State.of(side).symbol()));
 
@@ -20,7 +20,7 @@ public class HumanPlayer implements Player {
             if (move < 0 || move > 9) {
                 message("Illegal move, try again.");
             }
-            return move;
+            return String.valueOf(move);
         }
     }
 

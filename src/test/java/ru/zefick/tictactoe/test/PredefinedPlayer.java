@@ -15,8 +15,8 @@ public class PredefinedPlayer implements Player {
     }
 
     @Override
-    public int move(Grid grid, int side) {
-        return moves[count++];
+    public String move(Grid grid, int side) {
+        return String.valueOf(moves[count++]);
     }
 
 }

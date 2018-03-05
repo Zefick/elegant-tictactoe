@@ -11,9 +11,10 @@ public class GridTest {
     public void testFree() {
         Grid g = new Grid();
         for (int i=0; i<9; i++) {
-            Assert.assertTrue(g.free(i));
-            g = g.move(i, 1);
-            Assert.assertFalse(g.free(i));
+            String move = String.valueOf(i);
+            Assert.assertTrue(g.free(move));
+            g = g.move(move, 1);
+            Assert.assertFalse(g.free(move));
         }
         Assert.assertTrue(g.full());
     }

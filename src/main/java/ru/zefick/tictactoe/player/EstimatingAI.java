@@ -15,19 +15,20 @@ public final  class EstimatingAI implements Player {
     }
 
     @Override
-    public int move(Grid grid, int side) {
+    public String move(Grid grid, int side) {
         OptionalInt best = OptionalInt.empty(),
                 max = OptionalInt.empty();
         for (int i=0; i<9; i++) {
-            if (grid.free(i)) {
-                int n = estimation.estimate(grid, i, side);
+            String move = String.valueOf(i);
+            if (grid.free(move)) {
+                int n = estimation.estimate(grid, move, side);
                 if (!max.isPresent() || n > max.getAsInt()) {
                     max = OptionalInt.of(n);
                     best = OptionalInt.of(i);
                 }
             }
         }
-        return best.getAsInt();
+        return String.valueOf(best.getAsInt());
     }
 
 }

@@ -5,6 +5,6 @@ import ru.zefick.tictactoe.Grid;
 
 public interface Estimation {
 
-    int estimate(Grid grid, int move, int side);
+    int estimate(Grid grid, String move, int side);
 
 }

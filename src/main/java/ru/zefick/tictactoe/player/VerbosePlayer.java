@@ -12,13 +12,14 @@ public class VerbosePlayer implements Player {
     }
 
     @Override
-    public int move(Grid grid, int side) {
+    public String move(Grid grid, int side) {
         long t = System.currentTimeMillis();
-        int move = player.move(grid, side);
+        String move = player.move(grid, side);
         t = System.currentTimeMillis() - t;
+        int moveInt = Integer.parseInt(move);
         System.out.println(
                 String.format("Player %c moved on cell %d-%d in %d ms.",
-                        State.of(side).symbol(), move/3+1, move%3+1, t));
+                        State.of(side).symbol(), moveInt/3+1, moveInt%3+1, t));
         return move;
     }
 
