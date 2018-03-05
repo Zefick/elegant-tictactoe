@@ -8,14 +8,8 @@ import ru.zefick.tictactoe.State;
 
 public class FullDepthEstimation implements Estimation {
 
-    int count;
-
     @Override
     public int estimate(Grid grid, String cell, int side) {
-        count++;
-        if (count % 1000_000 == 0) {
-            System.out.println(count);
-        }
         grid = grid.move(cell, side);
         if (grid.winner() == State.of(side)) {
             return 1;
