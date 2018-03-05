@@ -14,8 +14,8 @@ public class ForcedPlayer implements Player {
         this.player = player;
     }
 
-    private static boolean checkMove(Grid grid, String move) {
-        return grid.free(move)
+    private static boolean checkMove(Grid grid, int side, String move) {
+        return grid.possibleMove(side, move)
                 && (!grid.move(move, 1).winner().empty()
                 || !grid.move(move, 2).winner().empty());
     }
@@ -24,7 +24,7 @@ public class ForcedPlayer implements Player {
     public String move(Grid grid, int side) {
         for (int i=0; i<9; i++) {
             String move = String.valueOf(i);
-            if (checkMove(grid, move)) {
+            if (checkMove(grid, side, move)) {
                 return move;
             }
         }

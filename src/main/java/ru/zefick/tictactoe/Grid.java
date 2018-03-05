@@ -1,59 +1,20 @@
 
 package ru.zefick.tictactoe;
 
-import java.util.Arrays;
+import java.util.List;
 
-public final class Grid {
+public interface Grid {
 
-    private final State data[];
+    public Grid move(String cell, int side);
 
-    private Grid(State grid[]) {
-        this.data = grid;
-    }
+    public boolean possibleMove(int side, String n);
 
-    public Grid() {
-        data = new State[9];
-        Arrays.fill(data, State.EMPTY);
-    }
+    public List<String> possibleMoves(int side) ;
 
-    public Grid move(String cell, int side) {
-        State data2[] = data.clone();
-        data2[Integer.parseInt(cell)] = State.of(side);
-        return new Grid(data2);
-    }
+    public boolean full();
 
-    public boolean free(String n) {
-        return data[Integer.valueOf(n)].empty();
-    }
+    public String string() ;
 
-    public boolean full() {
-        for (State s : data) {
-            if (s.empty()) return false;
-        }
-        return true;
-    }
-
-    public String string() {
-        return String.format("%c %c %c\n%c %c %c\n%c %c %c\n",
-                data[0].symbol(), data[1].symbol(), data[2].symbol(),
-                data[3].symbol(), data[4].symbol(), data[5].symbol(),
-                data[6].symbol(), data[7].symbol(), data[8].symbol());
-    }
-
-    public State winner() {
-        int lines[][] = {
-                {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6},
-                {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}
-        };
-        for (int[] line : lines) {
-            State a = data[line[0]];
-            if (!a.empty()
-                    && data[line[1]] == a
-                    && data[line[2]] == a) {
-                return a;
-            }
-        }
-        return State.EMPTY;
-    }
+    public State winner();
 
 }

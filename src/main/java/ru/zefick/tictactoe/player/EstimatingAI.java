@@ -1,6 +1,7 @@
 
 package ru.zefick.tictactoe.player;
 
+import java.util.Optional;
 import java.util.OptionalInt;
 
 import ru.zefick.tictactoe.Grid;
@@ -16,19 +17,17 @@ public final  class EstimatingAI implements Player {
 
     @Override
     public String move(Grid grid, int side) {
-        OptionalInt best = OptionalInt.empty(),
-                max = OptionalInt.empty();
-        for (int i=0; i<9; i++) {
-            String move = String.valueOf(i);
-            if (grid.free(move)) {
-                int n = estimation.estimate(grid, move, side);
-                if (!max.isPresent() || n > max.getAsInt()) {
-                    max = OptionalInt.of(n);
-                    best = OptionalInt.of(i);
-                }
+        Optional<String> best = Optional.empty();
+        OptionalInt max = OptionalInt.empty();
+
+        for (String move : grid.possibleMoves(side)) {
+            int n = estimation.estimate(grid, move, side);
+            if (!max.isPresent() || n > max.getAsInt()) {
+                max = OptionalInt.of(n);
+                best = Optional.of(move);
             }
         }
-        return String.valueOf(best.getAsInt());
+        return best.get();
     }
 
 }
