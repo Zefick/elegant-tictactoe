@@ -21,17 +21,17 @@ public class MonteCarloEstimation implements Estimation {
     }
 
     @Override
-    public int estimate(Grid grid, int cell, boolean side) {
+    public int estimate(Grid grid, int cell, int side) {
         Player p = new ForcedPlayer(
                 new EstimatingAI(
                         new RandomEstimation()));
-        Game game = new Game(grid.move(cell, side), p, p, !side);
+        Game game = new Game(grid.move(cell, side), p, p, 3 - side);
         int n = 0;
         for (int i=0; i<count; i++) {
             State winner = game.play().winner();
             if (winner == State.of(side)) {
                 n += 1;
-            } else if (winner == State.of(!side)) {
+            } else if (winner == State.of(3 - side)) {
                 n -= 5;
             }
         }

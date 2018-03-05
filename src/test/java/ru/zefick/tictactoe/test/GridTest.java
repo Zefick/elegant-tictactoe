@@ -12,7 +12,7 @@ public class GridTest {
         Grid g = new Grid();
         for (int i=0; i<9; i++) {
             Assert.assertTrue(g.free(i));
-            g = g.move(i, true);
+            g = g.move(i, 1);
             Assert.assertFalse(g.free(i));
         }
         Assert.assertTrue(g.full());

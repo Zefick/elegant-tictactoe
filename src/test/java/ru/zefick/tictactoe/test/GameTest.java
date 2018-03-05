@@ -60,7 +60,7 @@ public class GameTest {
                 new Grid(),
                 new PredefinedPlayer(new int[] {0, 1, 2}),
                 new PredefinedPlayer(new int[] {6, 7, 8}),
-                true
+                1
             ).play().winner(),
             State.X);
 
@@ -69,7 +69,7 @@ public class GameTest {
                 new Grid(),
                 new PredefinedPlayer(new int[] {0, 1, 2}),
                 new PredefinedPlayer(new int[] {6, 7, 8}),
-                false
+                2
             ).play().winner(),
             State.O);
     }

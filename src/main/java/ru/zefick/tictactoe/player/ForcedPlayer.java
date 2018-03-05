@@ -16,12 +16,12 @@ public class ForcedPlayer implements Player {
 
     private static boolean checkMove(Grid grid, int move) {
         return grid.free(move)
-                && (!grid.move(move, true).winner().empty()
-                || !grid.move(move, false).winner().empty());
+                && (!grid.move(move, 1).winner().empty()
+                || !grid.move(move, 2).winner().empty());
     }
 
     @Override
-    public int move(Grid grid, boolean side) {
+    public int move(Grid grid, int side) {
         for (int i=0; i<9; i++) {
             if (checkMove(grid, i)) {
                 return i;

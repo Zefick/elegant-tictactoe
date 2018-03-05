@@ -27,8 +27,8 @@ public class StateTest {
 
     @Test
     public void testOf() throws Exception {
-        assertSame(State.of(true), State.X);
-        assertSame(State.of(false), State.O);
+        assertSame(State.of(1), State.X);
+        assertSame(State.of(2), State.O);
     }
 
 }

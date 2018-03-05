@@ -9,7 +9,7 @@ import ru.zefick.tictactoe.State;
 public class FullDepthEstimation implements Estimation {
 
     @Override
-    public int estimate(Grid grid, int cell, boolean side) {
+    public int estimate(Grid grid, int cell, int side) {
         grid = grid.move(cell, side);
         if (grid.winner() == State.of(side)) {
             return 1;
@@ -19,7 +19,7 @@ public class FullDepthEstimation implements Estimation {
         OptionalInt best = OptionalInt.empty();
         for (int i=0; i<9; ++i) {
             if (grid.free(i)) {
-                int n = -estimate(grid, i, !side);
+                int n = -estimate(grid, i, 3 - side);
                 if (!best.isPresent() ||  n < best.getAsInt()) {
                     best = OptionalInt.of(n);
                 }

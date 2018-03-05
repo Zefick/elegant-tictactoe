@@ -9,7 +9,7 @@ import ru.zefick.tictactoe.State;
 public class HumanPlayer implements Player {
 
     @Override
-    public int move(Grid grid, boolean side) {
+    public int move(Grid grid, int side) {
         message(grid.string());
         message(String.format("Your move (%s): ", State.of(side).symbol()));
 

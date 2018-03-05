@@ -16,7 +16,7 @@ public final class Grid {
         Arrays.fill(data, State.EMPTY);
     }
 
-    public Grid move(int cell, boolean side) {
+    public Grid move(int cell, int side) {
         State data2[] = data.clone();
         data2[cell] = State.of(side);
         return new Grid(data2);

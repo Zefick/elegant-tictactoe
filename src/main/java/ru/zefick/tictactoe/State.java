@@ -13,8 +13,8 @@ public enum State {
         this.symbol = symbol;
     }
 
-    public static State of(boolean side) {
-        return side ? X : O;
+    public static State of(int side) {
+        return side == 1 ? X : O;
     }
 
     public boolean empty() {

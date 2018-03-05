@@ -12,7 +12,7 @@ public class VerbosePlayer implements Player {
     }
 
     @Override
-    public int move(Grid grid, boolean side) {
+    public int move(Grid grid, int side) {
         long t = System.currentTimeMillis();
         int move = player.move(grid, side);
         t = System.currentTimeMillis() - t;

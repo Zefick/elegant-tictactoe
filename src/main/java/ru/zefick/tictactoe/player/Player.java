@@ -5,6 +5,6 @@ import ru.zefick.tictactoe.Grid;
 
 public interface Player {
 
-    int move(Grid grid, boolean side);
+    int move(Grid grid, int side);
 
 }

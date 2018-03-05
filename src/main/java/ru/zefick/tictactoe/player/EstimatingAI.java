@@ -15,7 +15,7 @@ public final  class EstimatingAI implements Player {
     }
 
     @Override
-    public int move(Grid grid, boolean side) {
+    public int move(Grid grid, int side) {
         OptionalInt best = OptionalInt.empty(),
                 max = OptionalInt.empty();
         for (int i=0; i<9; i++) {
