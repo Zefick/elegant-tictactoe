@@ -26,7 +26,7 @@ public class Main {
 
         Player p3 = new HumanPlayer();
 
-        Grid finish = new Game(new Grid3x3(), p1, p2).play();
+        Grid finish = new Game(new Grid4x4(), p1, p1).play();
 
         System.out.println(finish.string());
 
