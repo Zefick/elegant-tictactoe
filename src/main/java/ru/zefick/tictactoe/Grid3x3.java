@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import ru.zefick.tictactoe.core.Grid;
+import ru.zefick.tictactoe.core.State;
+
 public final class Grid3x3 implements Grid {
 
     private final State data[];

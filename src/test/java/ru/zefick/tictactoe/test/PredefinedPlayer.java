@@ -1,7 +1,7 @@
 
 package ru.zefick.tictactoe.test;
 
-import ru.zefick.tictactoe.Grid;
+import ru.zefick.tictactoe.core.Grid;
 import ru.zefick.tictactoe.player.Player;
 
 public class PredefinedPlayer implements Player {

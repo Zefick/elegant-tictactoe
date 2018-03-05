@@ -1,7 +1,7 @@
 
 package ru.zefick.tictactoe.estimation;
 
-import ru.zefick.tictactoe.Grid;
+import ru.zefick.tictactoe.core.Grid;
 
 public interface Estimation {
 

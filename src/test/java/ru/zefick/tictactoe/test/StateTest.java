@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import ru.zefick.tictactoe.State;
+import ru.zefick.tictactoe.core.State;
 
 public class StateTest {
 

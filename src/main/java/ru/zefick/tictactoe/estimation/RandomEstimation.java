@@ -3,7 +3,7 @@ package ru.zefick.tictactoe.estimation;
 
 import java.util.Random;
 
-import ru.zefick.tictactoe.Grid;
+import ru.zefick.tictactoe.core.Grid;
 
 public final class RandomEstimation implements Estimation {
 

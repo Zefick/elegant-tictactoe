@@ -3,8 +3,8 @@ package ru.zefick.tictactoe.estimation;
 
 import java.util.OptionalInt;
 
-import ru.zefick.tictactoe.Grid;
-import ru.zefick.tictactoe.State;
+import ru.zefick.tictactoe.core.Grid;
+import ru.zefick.tictactoe.core.State;
 
 public class FullDepthEstimation implements Estimation {
 

@@ -3,9 +3,9 @@ package ru.zefick.tictactoe.test;
 import org.junit.Test;
 
 import junit.framework.Assert;
-import ru.zefick.tictactoe.Game;
 import ru.zefick.tictactoe.Grid3x3;
-import ru.zefick.tictactoe.State;
+import ru.zefick.tictactoe.core.Game;
+import ru.zefick.tictactoe.core.State;
 
 /**
  * Unit test for simple App.

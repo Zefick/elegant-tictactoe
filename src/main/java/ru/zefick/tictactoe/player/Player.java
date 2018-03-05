@@ -1,7 +1,7 @@
 
 package ru.zefick.tictactoe.player;
 
-import ru.zefick.tictactoe.Grid;
+import ru.zefick.tictactoe.core.Grid;
 
 public interface Player {
 

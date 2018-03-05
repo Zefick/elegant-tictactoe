@@ -7,8 +7,8 @@ import java.util.Arrays;
 import org.junit.Test;
 
 import junit.framework.Assert;
-import ru.zefick.tictactoe.Grid;
 import ru.zefick.tictactoe.Grid3x3;
+import ru.zefick.tictactoe.core.Grid;
 
 public class GridTest {
 

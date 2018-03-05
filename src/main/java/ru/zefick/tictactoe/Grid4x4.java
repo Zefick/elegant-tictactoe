@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import ru.zefick.tictactoe.core.Grid;
+import ru.zefick.tictactoe.core.State;
+
 /**
  * Variant of the game in 4x4 grid.
  * If somebody build 4 figures in a vertical or horizontal row then first player wins.

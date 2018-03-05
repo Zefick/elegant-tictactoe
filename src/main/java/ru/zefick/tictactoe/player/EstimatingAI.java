@@ -4,7 +4,7 @@ package ru.zefick.tictactoe.player;
 import java.util.Optional;
 import java.util.OptionalInt;
 
-import ru.zefick.tictactoe.Grid;
+import ru.zefick.tictactoe.core.Grid;
 import ru.zefick.tictactoe.estimation.Estimation;
 
 public final  class EstimatingAI implements Player {

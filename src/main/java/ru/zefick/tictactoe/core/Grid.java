@@ -1,5 +1,5 @@
 
-package ru.zefick.tictactoe;
+package ru.zefick.tictactoe.core;
 
 import java.util.List;
 

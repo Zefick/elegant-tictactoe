@@ -1,9 +1,9 @@
 
 package ru.zefick.tictactoe.estimation;
 
-import ru.zefick.tictactoe.Game;
-import ru.zefick.tictactoe.Grid;
-import ru.zefick.tictactoe.State;
+import ru.zefick.tictactoe.core.Game;
+import ru.zefick.tictactoe.core.Grid;
+import ru.zefick.tictactoe.core.State;
 import ru.zefick.tictactoe.player.EstimatingAI;
 import ru.zefick.tictactoe.player.ForcedPlayer;
 import ru.zefick.tictactoe.player.Player;

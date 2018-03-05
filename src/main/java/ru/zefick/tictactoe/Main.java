@@ -1,6 +1,9 @@
 
 package ru.zefick.tictactoe;
 
+import ru.zefick.tictactoe.core.Game;
+import ru.zefick.tictactoe.core.Grid;
+import ru.zefick.tictactoe.core.State;
 import ru.zefick.tictactoe.estimation.FullDepthEstimation;
 import ru.zefick.tictactoe.estimation.MonteCarloEstimation;
 import ru.zefick.tictactoe.player.EstimatingAI;
