@@ -1,99 +1,135 @@
 @startuml
 
-class Game {
-  -Player p1
-  -Player p2
-  -Grid grid
-  -int first
-  +Game(Grid grid, Player p1, Player p2, int first)
-  +Game(Grid grid, Player p1, Player p2)
-  +play() : Grid
+namespace core {
+
+    class Game {
+      -Player p1
+      -Player p2
+      -Grid grid
+      -int first
+      +Game(Grid grid, Player p1, Player p2, int first)
+      +Game(Grid grid, Player p1, Player p2)
+      +play() : Grid
+    }
+    
+    interface Grid {
+      +move(String move, int side) : Grid
+      +possibleMoves(String cell) : boolean
+      +possibleMoves(int side) : List<String>
+      +full() : boolean
+      +string() : String
+      +winner() : State
+    }
+    
+    interface GameFactory {
+      +grid() : Grid
+      +Assistant() : HumanPlayer.Assistant
+    }
+    
+    enum State {
+      EMPTY
+      X
+      O
+      ---
+      -char symbol
+      ---
+      +empty() : boolean
+      +symbol() : char
+      +{static} of(boolean)
+    }
+    
+    interface Player {
+      +move(Grid grid, int side) : String
+    }
+
+    Game *--- GameFactory
+    Game *--- Grid
+    Game *--- "2" Player
 }
 
-interface Grid {
-  +move(String move, int side) : Grid
-  +possibleMoves(String cell) : boolean
-  +possibleMoves(int side) : List<String>
-  +full() : boolean
-  +string() : String
-  +winner() : State
+namespace game3x3 {
+    class Grid3x3 {
+      -State[] data
+    }
+    
+    class Factory3x3 << (F,#FF7700) Factory >>
+    class HumanAssistant
+    
+    Factory3x3 -- Grid3x3 : creates
+    Factory3x3 -- HumanAssistant : creates
+    
+    core.GameFactory <|-- Factory3x3
+    player.Assistant <|-- HumanAssistant
 }
 
-class Grid3x3 {
-  -State[] data
+namespace game4x4 {
+    class Grid4x4 {
+      -State[] data
+    }
+    
+    class Factory4x4 << (F,#FF7700) Factory >>
+    class HumanAssistant
+    
+    Factory4x4 -- Grid4x4 : creates
+    Factory4x4 -- HumanAssistant : creates
+    
+    core.GameFactory <|-- Factory4x4
+    player.Assistant <|-- HumanAssistant
 }
 
-class Grid4x4 {
-  -State[] data
+core.Grid <|-- game3x3.Grid3x3
+core.Grid <|-- game4x4.Grid4x4
+
+namespace estimation {
+    interface Estimation {
+      +estimate(Grid grid, String move, int side) : int
+    }
+
+    class MonteCarloEstimation {
+      -int count
+    }
+    class RandomEstimation
+    class FullDepthEstimation
+
+    Estimation <|--- MonteCarloEstimation 
+    Estimation <|--- RandomEstimation
+    Estimation <|--- FullDepthEstimation
+
+    MonteCarloEstimation o- RandomEstimation
 }
 
-Grid3x3 *-- "9" State
-Grid4x4 *-- "16" State
-Game *-- Grid
-Grid <|-- Grid3x3
-Grid <|-- Grid4x4
+namespace player {
 
+    interface Assistant {
+      +prompt() : String
+      +convertMove(String input) : String
+    }
+    
+    class ForcedPlayer {
+      -player : Player
+    }
 
-enum State {
-  EMPTY
-  X
-  O
-  ---
-  -char symbol
-  ---
-  +empty() : boolean
-  +symbol() : char
-  +{static} of(boolean)
+    class VerbosePlayer {
+      -player : Player
+    }
+
+    class HumanPlayer {
+      -message(String msg)
+    }
+    class EstimatingAI {
+      -estimation : Estimation
+    }
+
+    HumanPlayer o-- Assistant : use
+
+    EstimatingAI *--- estimation.Estimation
+    EstimatingAI ---o estimation.MonteCarloEstimation
+
+    core.Player <|-- HumanPlayer
+    core.Player <|-- ForcedPlayer
+    core.Player <|-- EstimatingAI
+    core.Player <|-- VerbosePlayer
 }
-
-
-Game *-- Player
-
-interface Estimation {
-  +estimate(Grid grid, String move, int side) : int
-}
-
-class MonteCarloEstimation {
-  -int count
-}
-class RandomEstimation
-class FullDepthEstimation
-
-Estimation <|-- MonteCarloEstimation 
-Estimation <|-- RandomEstimation
-Estimation <|-- FullDepthEstimation
-
-MonteCarloEstimation o- RandomEstimation : use
-
-interface Player {
-  +move(Grid grid, int side) : String
-}
-
-class EstimatingAI {
-  -estimation : Estimation
-}
-
-class ForcedPlayer {
-  -player : Player
-}
-
-class VerbosePlayer {
-  -player : Player
-}
-
-class HumanPlayer {
-  -message(String msg)
-}
-
-EstimatingAI *-- Estimation
-
-VerbosePlayer *-- Player
-ForcedPlayer *-- Player
-
-Player <|-- HumanPlayer
-Player <|-- ForcedPlayer
-Player <|-- EstimatingAI
-Player <|-- VerbosePlayer
 
 
 @enduml
