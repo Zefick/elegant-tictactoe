@@ -1,8 +1,6 @@
 
 package ru.zefick.tictactoe.core;
 
-import ru.zefick.tictactoe.player.Player;
-
 public final class Game {
 
     private final Player p1, p2;

@@ -1,5 +1,5 @@
 
-package ru.zefick.tictactoe;
+package ru.zefick.tictactoe.game4x4;
 
 import java.util.ArrayList;
 import java.util.Arrays;

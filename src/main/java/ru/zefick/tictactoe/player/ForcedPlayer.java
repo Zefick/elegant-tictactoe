@@ -1,7 +1,8 @@
 
 package ru.zefick.tictactoe.player;
 
-import ru.zefick.tictactoe.Grid;
+import ru.zefick.tictactoe.core.Grid;
+import ru.zefick.tictactoe.core.Player;
 
 /**
  * Forced move is either move which gives a player instant victory or prevent it for opponent.

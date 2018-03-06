@@ -3,10 +3,9 @@ package ru.zefick.tictactoe.estimation;
 
 import ru.zefick.tictactoe.core.Game;
 import ru.zefick.tictactoe.core.Grid;
+import ru.zefick.tictactoe.core.Player;
 import ru.zefick.tictactoe.core.State;
 import ru.zefick.tictactoe.player.EstimatingAI;
-import ru.zefick.tictactoe.player.ForcedPlayer;
-import ru.zefick.tictactoe.player.Player;
 
 public class MonteCarloEstimation implements Estimation {
 
@@ -22,9 +21,8 @@ public class MonteCarloEstimation implements Estimation {
 
     @Override
     public int estimate(Grid grid, String cell, int side) {
-        Player p = new ForcedPlayer(
-                new EstimatingAI(
-                        new RandomEstimation()));
+        Player p = new EstimatingAI(
+                new RandomEstimation());
         Game game = new Game(grid.move(cell, side), p, p, 3 - side);
         int n = 0;
         for (int i=0; i<count; i++) {
